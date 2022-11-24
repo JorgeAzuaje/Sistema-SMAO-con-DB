@@ -1,39 +1,37 @@
 const mongoose = require('mongoose');
-const eqSchema = new mongoose.Schema(
+const trSchema = new mongoose.Schema(
     {
         id:{
             type: mongoose.Types.ObjectId,
             unique: true
         },
-        nombre: {
+        idEquipo: {
             type: String
         },
-        descripcion:{
+        nombreEquipo:{
             type: String
         },
-        serial:{
-            type: String
+        fechaPlan:{
+            type: Date
         },
         fecha_ini: {
             type: Date
         },
-        fecha_ult:{
+        fecha_fin:{
             type: Date
         },
-        fecha_man:{
-            type: Date
-        },
-        id_Trabajo: {
+        obsTecnico:{
             type: String
         },
         estado: {
-            type:['Reparado', 'Mantenimiento', 'Dañado'],
-            dafault: 'Dañado'    
+            type:['En mantenimiento','Terminado'],
+            dafault: 'En mantenimiento'    
         }
     },
     {
         versionkey: false,  
         timestamps: true
     }
-    )
-    module.exports = mongoose.model('equipos', eqSchema);
+    );
+
+    module.exports = mongoose.model('trabajos ', trSchema);
