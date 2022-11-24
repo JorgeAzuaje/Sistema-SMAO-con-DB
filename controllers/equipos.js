@@ -33,4 +33,30 @@ const getEquipo = async (req, res) =>{
     
 };
 
-module.exports = {getEquipo, getEquipos, postEquipos};
+/**
+ * Modificar un equipo
+ */
+ const putEquipos = async (req, res) =>{
+    const {_id} = req.params;
+    const {
+        nombre,
+    descripcion,
+    serial,
+    fecha_ini,
+    fecha_ult,
+    fecha_man,
+    id_Trabajo,
+    estado
+    } = req.body;
+    const data = await modeloEquipos.updateOne({_id: _id}, {$set: {nombre,
+        descripcion,
+        serial,
+        fecha_ini,
+        fecha_ult,
+        fecha_man,
+        id_Trabajo,
+        estado}});
+    res.send({data});
+};
+
+module.exports = {getEquipo, getEquipos, postEquipos, putEquipos};
