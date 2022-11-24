@@ -1,5 +1,15 @@
 const {modeloEquipos} = require('../models');
 const { db } = require('../models/nosql/trabajos');
+const mongoose = require('mongoose');
+
+/**
+ * Obtener equipo by ID
+ */
+const getEquipo = async (req, res) =>{
+    const {_id} = req.params;
+    const data = await modeloEquipos.findById(_id);
+    res.send({data});
+};
 
 /**
  * Obtener lista de equipos disponibles
@@ -12,14 +22,15 @@ const { db } = require('../models/nosql/trabajos');
 
 /**
  * Crear un equipo nuevo
- * Actualmente no Funcional
  */
  const postEquipos = async (req, res) =>{
-    const {body} = req
-    console.log(body)
-    const data = await modeloEquipos.create(body)
-    res.send({data})
+    const _id = mongoose.Types.ObjectId();
+    const equipos = modeloEquipos(req.body);
+    equipos
+    .save()
+    .then((data)=> res.json(data))
+    .catch((error=> res.json({message: error})));
     
 };
 
-module.exports = {getEquipos, postEquipos}
+module.exports = {getEquipo, getEquipos, postEquipos};
