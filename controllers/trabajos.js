@@ -56,5 +56,13 @@ const postTrabajos = (req, res) =>{
         estado}});
     res.send({data});
 };
+/**
+ * Borrar un trabajo disponible por id
+ */
+ const deleteTrabajos = async (req, res) =>{
+    const {_id} = req.params;
+    const data = await modeloTrabajos.remove({_id:_id});
+    res.send({message : 'El trabajo ha sido eliminado exitosamente'});
+};
 
-module.exports = {getTrabajo, getTrabajos, postTrabajos, putTrabajos}
+module.exports = {getTrabajo, getTrabajos, postTrabajos, putTrabajos, deleteTrabajos}
