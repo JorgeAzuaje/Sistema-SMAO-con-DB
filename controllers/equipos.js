@@ -59,4 +59,13 @@ const getEquipo = async (req, res) =>{
     res.send({data});
 };
 
-module.exports = {getEquipo, getEquipos, postEquipos, putEquipos};
+/**
+ * Eliminar un equipo por id
+ */
+const deleteEquipos = async (req, res) =>{
+    const {_id} = req.params;
+    const data = await modeloEquipos.remove({_id: _id});
+    res.send({message:'the document has been delete'});
+};
+
+module.exports = {getEquipo, getEquipos, postEquipos, putEquipos, deleteEquipos};
