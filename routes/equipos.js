@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getEquipos, getEquipo, postEquipos, putEquipos} = require('../controllers/equipos')
+const {getEquipos, getEquipo, postEquipos, putEquipos, deleteEquipos} = require('../controllers/equipos')
 
 router.get('/_id', getEquipo);
 router.get('/', getEquipos);
