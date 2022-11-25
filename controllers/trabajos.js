@@ -32,4 +32,29 @@ const postTrabajos = (req, res) =>{
     .catch((error=> res.json({message: error})));
 };
 
-module.exports = {getTrabajo, getTrabajos, postTrabajos}
+/**
+ * Modificar un Trabajo
+ */
+ const putTrabajos = async (req, res) =>{
+    const {_id} = req.params;
+    const {
+    idEquipo,
+    nombreEquipo,
+    fechaPlan,
+    fecha_ini,
+    fecha_fin,
+    obsTecnico,
+    estado
+    } = req.body;
+    const data = await modeloTrabajos.updateOne({_id: _id}, {$set: {
+        idEquipo,
+        nombreEquipo,
+        fechaPlan,
+        fecha_ini,
+        fecha_fin,
+        obsTecnico,
+        estado}});
+    res.send({data});
+};
+
+module.exports = {getTrabajo, getTrabajos, postTrabajos, putTrabajos}
