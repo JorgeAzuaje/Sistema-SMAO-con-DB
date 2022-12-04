@@ -21,3 +21,5 @@ const compare = async (clavePlana, hashPassword)=> {
 }
 
 module.exports = {encrypt, compare}
+
+//luis-san

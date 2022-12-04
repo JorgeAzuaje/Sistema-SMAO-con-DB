@@ -25,7 +25,7 @@ const validatorRegPer = [
             return
     }else{
         err(e)
-    }}),
+    }}),//VALIDAR SI ES PERSONAL O ADMIN //luis-san
     (req, res, next) => {
         return validatePer(req, res, next)
     }
