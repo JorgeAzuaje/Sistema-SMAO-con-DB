@@ -11,19 +11,13 @@ const perSchema = new mongoose.Schema({
         trim: true,
         lowercase: true,
         unique: true,
-        validate: {
-            validator: function(v) {
-                return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(v);
-            },
-            message: "Please enter a valid email"
-        },
-        required: [true, "Email required"]
     },
     clave:{
-        type: String
+        type: String,
+        select: false
     },
     rol:{
-        type: ["Personal"],
+        type: ["Personal", "Admin"],
         default: "Personal"
     }
 }, {

@@ -15,8 +15,28 @@ const validatorRegPer = [
     .isEmail(),
     check("clave")
     .exists()
-    .notEmpty(),
+    .notEmpty()
+    .isLength({min:3, max:25}),
     check("rol")
+    .exists()
+    .isString()
+    .custom(value =>(next)=> {if("Personal" || "Admin"){
+            next()
+            return
+    }else{
+        err(e)
+    }}),
+    (req, res, next) => {
+        return validatePer(req, res, next)
+    }
+];
+
+const validatorLogPer = [
+    check("email")
+    .exists()
+    .notEmpty()
+    .isEmail(),
+    check("clave")
     .exists()
     .notEmpty(),
     (req, res, next) => {
@@ -24,4 +44,4 @@ const validatorRegPer = [
     }
 ];
 
-module.exports = { validatorRegPer }
+module.exports = { validatorRegPer, validatorLogPer  }
