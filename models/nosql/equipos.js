@@ -28,7 +28,7 @@ const eqSchema = new mongoose.Schema(
         },
         estado: {
             type:['Reparado', 'Mantenimiento', 'Dañado'],
-            dafault: 'Dañado'    
+            default: 'Dañado'    
         }
     },
     {
